@@ -1,4 +1,6 @@
 Eatbeans::Application.routes.draw do
+  resources :plates
+
   devise_for :users
   root "pages#home"
 
