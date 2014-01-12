@@ -1,6 +1,7 @@
 class PlatesController < ApplicationController
   before_action :set_plate, only: [:show, :edit, :update, :destroy]
-
+  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @plates = Plate.all
@@ -12,7 +13,7 @@ class PlatesController < ApplicationController
 
 
   def new
-    @plate = Plate.new
+    @plate = current_user.plates.build
   end
 
 
@@ -21,7 +22,7 @@ class PlatesController < ApplicationController
 
 
   def create
-    @plate = Plate.new(plate_params)
+    @plate = current_user.plates.build(plate_params)
 
     
       if @plate.save
@@ -61,6 +62,12 @@ class PlatesController < ApplicationController
 
     def set_plate
       @plate = Plate.find(params[:id])
+    end
+
+
+   def correct_user
+      @plate = current_user.plates.find_by(id: params[:id])
+      redirect_to plates_path, notice: "Not authorized to edit this plate" if @plate.nil?
     end
 
 

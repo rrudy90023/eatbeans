@@ -10,5 +10,9 @@
   <%= @plate.recipe %>
 </p>
 
+
+<% if @plate.user == current_user %>
 <%= link_to 'Edit', edit_plate_path(@plate) %> |
+<% end %>
+
 <%= link_to 'Back', plates_path %>

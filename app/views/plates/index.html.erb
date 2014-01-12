@@ -5,6 +5,7 @@
     <tr>
       <th>Description</th>
       <th>Recipe</th>
+      <th>User's email</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,9 +17,16 @@
       <tr>
         <td><%= plate.description %></td>
         <td><%= plate.recipe %></td>
+        <td><%= plate.user.email if plate.user %></td>
         <td><%= link_to 'Show', plate %></td>
+
+        <% if plate.user == current_user %>
+
         <td><%= link_to 'Edit', edit_plate_path(plate) %></td>
         <td><%= link_to 'Destroy', plate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <% end %>
+
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +34,7 @@
 
 <br>
 
+
+<% if user_signed_in? %>
 <%= link_to 'New Plate', new_plate_path %>
+<% end %>
