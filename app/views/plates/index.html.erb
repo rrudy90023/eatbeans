@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Description</th>
       <th>Recipe</th>
       <th>User's email</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @plates.each do |plate| %>
       <tr>
+        <td><%= image_tag plate.image.url(:medium) %></td>
         <td><%= plate.description %></td>
         <td><%= plate.recipe %></td>
         <td><%= plate.user.email if plate.user %></td>

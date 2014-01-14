@@ -29,6 +29,8 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 
 gem 'devise', '~> 3.1.1'
 
+gem 'paperclip', '~> 3.0'
+
 group :development, :test do
      gem 'sqlite3'
 end
