@@ -1,20 +1,39 @@
+<%= render 'pages/home' unless user_signed_in? %>
+
+
 <div id="plates" class="transitions-enabled">
 
     <% @plates.each do |plate| %>
        <div class="box panel panel-default">
-        <%= image_tag plate.image.url(:medium) %>
+    
+
+        <%= link_to image_tag(plate.image.url(:medium)), plate %>
+
         <div class="panel-body">
-        <%= plate.description %>
-        <%= plate.recipe %>
-        <%= plate.user.email if plate.user %>
-        <%= link_to 'Show', plate %>
+        <p><%= plate.description %></p>
+        <!--<%= plate.recipe %>-->
+        <p><strong><%= plate.user.email if plate.user %></strong></p>
+        
 
         <% if plate.user == current_user %>
+        <div class="actions">
 
-        <%= link_to 'Edit', edit_plate_path(plate) %>
-        <%= link_to 'Destroy', plate, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to edit_plate_path(plate) do %>
+              <span class="glyphicon glyphicon-edit"></span>
+              Edit
+            <% end %>
 
+
+
+
+            <%= link_to plate, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-trash"></span>
+              Delete
+            <% end %>
+
+        </div>
         <% end %>
+
       </div>
       </div>
 
