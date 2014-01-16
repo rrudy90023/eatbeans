@@ -1,42 +1,24 @@
-<h1>Listing plates</h1>
+<div id="plates" class="transitions-enabled">
 
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Description</th>
-      <th>Recipe</th>
-      <th>User's email</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @plates.each do |plate| %>
-      <tr>
-        <td><%= image_tag plate.image.url(:medium) %></td>
-        <td><%= plate.description %></td>
-        <td><%= plate.recipe %></td>
-        <td><%= plate.user.email if plate.user %></td>
-        <td><%= link_to 'Show', plate %></td>
+       <div class="box panel panel-default">
+        <%= image_tag plate.image.url(:medium) %>
+        <div class="panel-body">
+        <%= plate.description %>
+        <%= plate.recipe %>
+        <%= plate.user.email if plate.user %>
+        <%= link_to 'Show', plate %>
 
         <% if plate.user == current_user %>
 
-        <td><%= link_to 'Edit', edit_plate_path(plate) %></td>
-        <td><%= link_to 'Destroy', plate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%= link_to 'Edit', edit_plate_path(plate) %>
+        <%= link_to 'Destroy', plate, method: :delete, data: { confirm: 'Are you sure?' } %>
 
         <% end %>
+      </div>
+      </div>
 
-      </tr>
     <% end %>
-  </tbody>
-</table>
-
-<br>
 
 
-<% if user_signed_in? %>
-<%= link_to 'New Plate', new_plate_path %>
-<% end %>
+</div>
