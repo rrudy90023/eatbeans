@@ -4,7 +4,7 @@ class PlatesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @plates = Plate.all
+    @plates = Plate.all.order("created_at DESC")
   end
 
 
