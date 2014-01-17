@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
 
          has_many :plates
 
+
+         validates :name, presence: true
 end

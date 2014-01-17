@@ -12,7 +12,7 @@
         <div class="panel-body">
         <p><%= plate.description %></p>
         <!--<%= plate.recipe %>-->
-        <p><strong><%= plate.user.email if plate.user %></strong></p>
+        <p><strong><%= plate.user.name if plate.user %></strong></p>
         
 
         <% if plate.user == current_user %>
@@ -40,4 +40,9 @@
     <% end %>
 
 
+</div>
+
+
+<div class="center">
+   <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
 </div>
